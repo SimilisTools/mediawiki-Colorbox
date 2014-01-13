@@ -50,7 +50,9 @@ $wgAjaxExportList[] = 'Colorbox::getPageContent';
 
 // Hook our callback function into the parser
 function ColorboxSetupParserFunction( $parser ) {
-
+	
+	// {{#colorboximg:file=File|size=32|description=tal i tal|csize=100%}}
+	$parser->setFunctionHook( 'colorboximg', 'Colorbox::imgFunction', SFH_OBJECT_ARGS );
 	$parser->setFunctionHook( 'colorboxlink', 'Colorbox::linkFunction', SFH_OBJECT_ARGS );
 	$parser->setFunctionHook( 'colorboxload', 'Colorbox::loadFunction', SFH_OBJECT_ARGS );
 	

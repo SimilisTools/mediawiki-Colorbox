@@ -22,6 +22,23 @@ class Colorbox {
 		return $out;
 	}
 
+
+	/**
+	 * @param $parser Parser
+	 * @param $frame PPFrame
+	 * @param $args array
+	 * @return string
+	*/
+
+	public static function imgFunction( $parser, $frame, $args ) {
+		
+		$out = $parser->getOutput();
+		$out->addModules( 'ext.Colorbox' );
+	
+		/** To be finished **/
+		return "";
+	}
+
 	/**
 	 * @param $parser Parser
 	 * @param $frame PPFrame
