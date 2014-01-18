@@ -42,20 +42,24 @@ $wgExtensionMessagesFiles['ColorboxMagic'] = __DIR__ . '/Colorbox.i18n.magic.php
 #$wgHooks['OutputPageBeforeHTML'][] = 'Colorbox::onOutputPageBeforeHTML';
 
 $wgHooks['ParserFirstCallInit'][] = 'ColorboxSetupParserFunction';
-
+$wgHooks['ParserFirstCallInit'][] = 'ColorboxSetupTagExtension';
 
 #Ajax
 $wgAjaxExportList[] = 'Colorbox::getPageContent';
-
 
 // Hook our callback function into the parser
 function ColorboxSetupParserFunction( $parser ) {
 	
 	// {{#colorboximg:file=File|size=32|description=tal i tal|csize=100%}}
-	$parser->setFunctionHook( 'colorboximg', 'Colorbox::imgFunction', SFH_OBJECT_ARGS );
 	$parser->setFunctionHook( 'colorboxlink', 'Colorbox::linkFunction', SFH_OBJECT_ARGS );
 	$parser->setFunctionHook( 'colorboxload', 'Colorbox::loadFunction', SFH_OBJECT_ARGS );
 	
+	return true;
+}
+
+// Hook our callback function into the parser
+function ColorboxSetupTagExtension( $parser ) {
+	$parser->setHook( 'colorbox', 'Colorbox::printTag' );
 	return true;
 }
 

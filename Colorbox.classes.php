@@ -23,20 +23,30 @@ class Colorbox {
 	}
 
 
+	
 	/**
-	 * @param $parser Parser
-	 * @param $frame PPFrame
+	 * @param $input string
 	 * @param $args array
+	 * @param $parser Parser
+	 * @param $frame Frame
 	 * @return string
 	*/
-
-	public static function imgFunction( $parser, $frame, $args ) {
+	
+	public static function printTag( $input, $args, $parser, $frame ) {
 		
+		$parser->disableCache();
 		$out = $parser->getOutput();
 		$out->addModules( 'ext.Colorbox' );
-	
-		/** To be finished **/
-		return "";
+		
+		$output = "";
+		
+		if ( !empty( $input ) ) {
+			$output = $parser->recursiveTagParse( trim( $input ) );
+			$output = "<span class='colorboximg' >".$output."</span>";
+		}
+		
+		return ( $output );
+		
 	}
 
 	/**
