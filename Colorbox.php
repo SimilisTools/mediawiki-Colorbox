@@ -17,12 +17,14 @@ $wgExtensionCredits['parserhook'][] = array(
 
 /** RESOURCE Modules **/
 global $wgLanguageCode;
-$wgColorboxLangLib = "libs/colorbox/i18n/jquery.colorbox-".$wgLanguageCode.".js";
+// L10n temporarily out. Missing Langcode makes everything stop
+// $wgColorboxLangLib = "libs/colorbox/i18n/jquery.colorbox-".$wgLanguageCode.".js";
 $wgColorboxCSSLibs = array( "libs/colorbox/example3/colorbox.css" );
 
 
 $wgResourceModules['ext.Colorbox'] = array(
-	'scripts' => array( 'libs/colorbox/jquery.colorbox-min.js', $wgColorboxLangLib, 'libs/ext.colorbox.js' ),
+//	'scripts' => array( 'libs/colorbox/jquery.colorbox-min.js', $wgColorboxLangLib, 'libs/ext.Colorbox.js' ),
+	'scripts' => array( 'libs/colorbox/jquery.colorbox-min.js', 'libs/ext.Colorbox.js' ),
 	'styles' => $wgColorboxCSSLibs,
 	'localBasePath' => __DIR__,
 	'remoteExtPath' => 'Colorbox'

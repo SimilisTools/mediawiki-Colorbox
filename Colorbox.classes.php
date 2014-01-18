@@ -34,7 +34,6 @@ class Colorbox {
 	
 	public static function printTag( $input, $args, $parser, $frame ) {
 		
-		$parser->disableCache();
 		$out = $parser->getOutput();
 		$out->addModules( 'ext.Colorbox' );
 		

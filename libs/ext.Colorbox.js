@@ -1,4 +1,4 @@
-$(windows).load( function() {
+$(document).ready( function() {
 
 	if ( $("#colorboxload").length > 0 ) {
 	
@@ -22,27 +22,26 @@ $(windows).load( function() {
 	/** Go through all colorboximg **/
 	$(".colorboximg").each( function( i ) {
 	
-		console.log(this);
 		$(this).find("a.image").each( function( a ){
 			
 			var link = this;
-			// var href = $(this).attr('href');
-			var imgpre = $(this).children("img")[0].attr("src");
-			var img = imgpre;
+			var imgpre = $($(link).children("img")[0]).attr("src");
 			
 			// We do something if thumb
 			var patt = new RegExp("/thumb/");
-			if ( patt.test( img ) ) {
-				img = imgpre.replace( "/thumb", "" );
+			if ( patt.test( imgpre ) ) {
+				var img = imgpre.replace( "/thumb", "" );
 				var imgparts = img.split("/");
 				imgparts.pop();
 				img = imgparts.join("/");
+				$(link).attr("href", img);
 			}
-			
-			$(link).attr("href", img);
+		
 		});
 	
 	});
+	
+	$(".colorboximg a.image").colorbox();
 	
 });
 
