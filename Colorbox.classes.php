@@ -40,7 +40,7 @@ class Colorbox {
 		$output = "";
 		
 		if ( !empty( $input ) ) {
-			$output = $parser->recursiveTagParse( trim( $input ) );
+			$output = $parser->recursiveTagParse( trim( $input ), $frame );
 			$output = "<span class='colorboximg' >".$output."</span>";
 		}
 		
