@@ -6,16 +6,23 @@ $(document).ready( function() {
 		var target = $("#colorboxload").attr('data-page');
 		var target_class = $("#colorboxload").attr('data-class');
 		
+		var url = $("#colorboxload").attr('data-url');
 		
-		$.get( mw.util.wikiScript(), {
-			format: 'json',
-			action: 'ajax',
-			rs: 'Colorbox::getPageContent',
-			rsargs: [target] // becomes &rsargs[]=arg1&rsargs[]=arg2...
-		}, function(data) {
-			var output = "<div class='"+target_class+"'>"+data+"</div>";
-			$.colorbox({html:output});
-		});
+		if ( typeof url !== 'undefined' ) {
+			$.colorbox({href:url});
+		} else {
+		
+			$.get( mw.util.wikiScript(), {
+				format: 'json',
+				action: 'ajax',
+				rs: 'Colorbox::getPageContent',
+				rsargs: [target] // becomes &rsargs[]=arg1&rsargs[]=arg2...
+			}, function(data) {
+				var output = "<div class='"+target_class+"'>"+data+"</div>";
+				$.colorbox({html:output});
+			});
+		
+		}
 		
 	}
 

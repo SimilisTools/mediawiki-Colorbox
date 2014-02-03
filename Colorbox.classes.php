@@ -161,7 +161,25 @@ class Colorbox {
 			$page = trim( $frame->expand( $args[0] ) );
 
 			if ( !empty( $page ) ) {	
-				$content = "data-page='".$page."'";
+			
+				$pagecheck = true;
+				
+				if ( ( strpos( $page, "http:") !== false ) || ( strpos( $page, "https:") !== false ) || ( strpos( $page, "/") !== false ) ) {
+					$pagecheck = false; 
+				}
+				
+				if ( $pagecheck ) {
+					$content = "data-page='".$page."'";
+				} else {
+					if ( strpos( $page, "/") == 0 ) {
+					
+						global $wgServer;
+						$page = $wgServer.$page;
+					}
+				
+					$content = "data-url='".$page."'";
+				}
+				
 				$linkstr = "<span id='colorboxload' ".$content.$classparam."></span>";
 			}
 		} 
@@ -221,8 +239,9 @@ class Colorbox {
 	
 	private static function writeCookie ( $cookieparam ) {
 	
+		global $wgColorBoxCookieLife;
 		// set the expiration to 15 days
-		setcookie ( $cookieparam, "true", time()+60*60*24*15 );
+		setcookie ( $cookieparam, "true", time()+$wgColorBoxCookieLife );
 		return true;
 	}
 

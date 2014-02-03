@@ -30,6 +30,9 @@ $wgResourceModules['ext.Colorbox'] = array(
 	'remoteExtPath' => 'Colorbox'
 );
 
+// Cookie life in seconds
+$wgColorBoxCookieLife = 3600; //Default 1 hour
+
 /** LOADING OF CLASSES **/
 // https://www.mediawiki.org/wiki/Manual:$wgAutoloadClasses
 $wgAutoloadClasses['Colorbox'] = __DIR__ . '/Colorbox.classes.php';
