@@ -5,24 +5,24 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 }
 
 /** REGISTRATION */
-$wgExtensionCredits['parserhook'][] = array(
+$GLOBALS['wgExtensionCredits']['parserhook'][] = array(
 	'path' => __FILE__,
 	'name' => 'Colorbox',
-	'version' => '0.1',
+	'version' => '0.2',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:Colorbox',
 	'author' => array( 'Toniher' ),
-	'descriptionmsg' => 'Colorbox_desc',
+	'descriptionmsg' => 'colorbox-desc',
 );
 
 
 /** RESOURCE Modules **/
-global $wgLanguageCode;
+// global $wgLanguageCode;
 // L10n temporarily out. Missing Langcode makes everything stop
 // $wgColorboxLangLib = "libs/colorbox/i18n/jquery.colorbox-".$wgLanguageCode.".js";
-$wgColorboxCSSLibs = array( "libs/colorbox/example3/colorbox.css" );
+$GLOBALS['wgColorboxCSSLibs'] = array( "libs/colorbox/example3/colorbox.css" );
 
 
-$wgResourceModules['ext.Colorbox'] = array(
+$GLOBALS['wgResourceModules']['ext.Colorbox'] = array(
 //	'scripts' => array( 'libs/colorbox/jquery.colorbox-min.js', $wgColorboxLangLib, 'libs/ext.Colorbox.js' ),
 	'scripts' => array( 'libs/colorbox/jquery.colorbox-min.js', 'libs/ext.Colorbox.js' ),
 	'styles' => $wgColorboxCSSLibs,
@@ -31,26 +31,28 @@ $wgResourceModules['ext.Colorbox'] = array(
 );
 
 // Cookie life in seconds
-$wgColorBoxCookieLife = 3600; //Default 1 hour
+$GLOBALS['wgColorBoxCookieLife'] = 3600; //Default 1 hour
 
 /** LOADING OF CLASSES **/
 // https://www.mediawiki.org/wiki/Manual:$wgAutoloadClasses
-$wgAutoloadClasses['Colorbox'] = __DIR__ . '/Colorbox.classes.php';
+$GLOBALS['wgAutoloadClasses']['Colorbox'] = __DIR__ . '/Colorbox.classes.php';
 
 
 /** STRINGS AND THEIR TRANSLATIONS **/
-$wgExtensionMessagesFiles['Colorbox'] = __DIR__ . '/Colorbox.i18n.php';
-$wgExtensionMessagesFiles['ColorboxMagic'] = __DIR__ . '/Colorbox.i18n.magic.php';
+$GLOBALS['wgMessagesDirs']['Colorbox'] = __DIR__ . '/i18n';
+$GLOBALS['wgExtensionMessagesFiles']['Colorbox'] = __DIR__ . '/Colorbox.i18n.php';
+$GLOBALS['wgExtensionMessagesFiles']['ColorboxMagic'] = __DIR__ . '/Colorbox.i18n.magic.php';
 
 /** HOOKS **/
 
 #$wgHooks['OutputPageBeforeHTML'][] = 'Colorbox::onOutputPageBeforeHTML';
 
-$wgHooks['ParserFirstCallInit'][] = 'ColorboxSetupParserFunction';
-$wgHooks['ParserFirstCallInit'][] = 'ColorboxSetupTagExtension';
+$GLOBALS['wgHooks']['ParserFirstCallInit'][] = 'ColorboxSetupParserFunction';
+$GLOBALS['wgHooks']['ParserFirstCallInit'][] = 'ColorboxSetupTagExtension';
 
 #Ajax
-$wgAjaxExportList[] = 'Colorbox::getPageContent';
+// TODO: It may be better to change it into an API
+$GLOBALS['wgAjaxExportList'][] = 'Colorbox::getPageContent';
 
 // Hook our callback function into the parser
 function ColorboxSetupParserFunction( $parser ) {
