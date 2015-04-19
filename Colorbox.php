@@ -16,19 +16,21 @@ $GLOBALS['wgExtensionCredits']['parserhook'][] = array(
 
 
 /** RESOURCE Modules **/
-// global $wgLanguageCode;
-// L10n temporarily out. Missing Langcode makes everything stop
-// $wgColorboxLangLib = "libs/colorbox/i18n/jquery.colorbox-".$wgLanguageCode.".js";
+global $wgLanguageCode;
+
 $GLOBALS['wgColorboxCSSLibs'] = array( "libs/colorbox/example3/colorbox.css" );
 
-
 $GLOBALS['wgResourceModules']['ext.Colorbox'] = array(
-//	'scripts' => array( 'libs/colorbox/jquery.colorbox-min.js', $wgColorboxLangLib, 'libs/ext.Colorbox.js' ),
 	'scripts' => array( 'libs/colorbox/jquery.colorbox-min.js', 'libs/ext.Colorbox.js' ),
 	'styles' => $wgColorboxCSSLibs,
 	'localBasePath' => __DIR__,
 	'remoteExtPath' => 'Colorbox'
 );
+
+/** Include l10n if available **/
+if ( file_exists( __DIR__."/libs/colorbox/i18n/jquery.colorbox-".$wgLanguageCode.".js" ) ) {
+	array_push( $GLOBALS['wgResourceModules']['ext.Colorbox']['scripts'], "libs/colorbox/i18n/jquery.colorbox-".$wgLanguageCode.".js" );
+}
 
 // Cookie life in seconds
 $GLOBALS['wgColorBoxCookieLife'] = 3600; //Default 1 hour
