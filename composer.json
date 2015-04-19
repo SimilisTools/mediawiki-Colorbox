@@ -20,6 +20,7 @@
 		"composer/installers": "1.*,>=1.0.1"
 	},
 	"autoload": {
-		"files": ["Colorbox.php"]
+		"files": ["Colorbox.php"],
+		"classmap": ["Colorbox.classes.php"]
 	}
 }
