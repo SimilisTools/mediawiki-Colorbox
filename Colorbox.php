@@ -22,7 +22,7 @@ $GLOBALS['wgColorboxCSSLibs'] = array( "libs/colorbox/example3/colorbox.css" );
 
 $GLOBALS['wgResourceModules']['ext.Colorbox'] = array(
 	'scripts' => array( 'libs/colorbox/jquery.colorbox-min.js', 'libs/ext.Colorbox.js' ),
-	'styles' => $GLOBALS['$wgColorboxCSSLibs'],
+	'styles' => $GLOBALS['wgColorboxCSSLibs'],
 	'localBasePath' => __DIR__,
 	'remoteExtPath' => 'Colorbox'
 );
